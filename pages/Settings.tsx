@@ -10,9 +10,6 @@ const Settings: React.FC = () => {
         accessToken: '',
         verifyToken: '',
     });
-    const [showApiKey, setShowApiKey] = useState(false);
-    const [aiModel, setAiModel] = useState('gemini');
-    const [apiKey, setApiKey] = useState('');
 
 
     const handleIntegrationChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -26,11 +23,6 @@ const Settings: React.FC = () => {
         alert('Connection details saved successfully! (Check console for data)');
     };
     
-    const handleAiConfigSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('Saving AI Model Configuration:', { model: aiModel, apiKey });
-        alert('AI configuration saved successfully! (Check console for data)');
-    };
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text).then(() => {
@@ -147,57 +139,6 @@ const Settings: React.FC = () => {
                     </div>
                     <div className="flex justify-end">
                         <button type="submit" className="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-opacity-90">Save Connection Details</button>
-                    </div>
-                </form>
-            </div>
-
-            {/* AI Model Configuration */}
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">AI Model Configuration</h2>
-                <form className="space-y-4" onSubmit={handleAiConfigSubmit}>
-                    <div>
-                        <label htmlFor="model" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Language Model (LLM)</label>
-                        <select 
-                            id="model" 
-                            name="model" 
-                            value={aiModel}
-                            onChange={(e) => setAiModel(e.target.value)}
-                            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-brand-green focus:border-brand-green sm:text-sm rounded-md"
-                        >
-                            <option value="gemini">Gemini (gemini-2.5-flash)</option>
-                            <option value="openai-gpt4">OpenAI (GPT-4)</option>
-                            <option value="local">Local Model</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="api-key" className="block text-sm font-medium text-gray-700 dark:text-gray-300">API Key</label>
-                        <div className="relative mt-1">
-                             <input
-                                type={showApiKey ? 'text' : 'password'}
-                                name="api-key"
-                                id="api-key"
-                                value={apiKey}
-                                onChange={(e) => setApiKey(e.target.value)}
-                                placeholder="Enter your API key"
-                                className="block w-full shadow-sm sm:text-sm border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 rounded-md focus:ring-brand-green focus:border-brand-green pr-12"
-                            />
-                             <button
-                                type="button"
-                                onClick={() => setShowApiKey(!showApiKey)}
-                                className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none"
-                                aria-label={showApiKey ? "Hide API key" : "Show API key"}
-                            >
-                                {showApiKey ? (
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                                ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
-                                )}
-                            </button>
-                        </div>
-                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Your API key is stored securely. It is recommended to use environment variables.</p>
-                    </div>
-                    <div className="flex justify-end">
-                        <button type="submit" className="px-4 py-2 bg-brand-green text-white rounded-lg hover:bg-opacity-90">Save Configuration</button>
                     </div>
                 </form>
             </div>

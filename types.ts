@@ -3,12 +3,12 @@ export interface Message {
   id: string;
   text: string;
   timestamp: string;
-  sender: 'user' | 'ai' | 'system';
+  sender: 'user' | 'ai' | 'system' | 'error';
   isRead?: boolean;
 }
 
 export interface Conversation {
-  id: string;
+  id:string;
   userName: string;
   userPhone: string;
   avatarUrl: string;
