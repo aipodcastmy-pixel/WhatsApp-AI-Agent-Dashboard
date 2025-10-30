@@ -1,0 +1,5 @@
+{
+  "name": "WhatsApp AI Agent Dashboard",
+  "description": "A web-based dashboard to manage and configure a WhatsApp AI Agent. It allows users to view conversations, manage templates, configure AI models and plugins, and test the AI agent in a playground.",
+  "requestFramePermissions": []
+}
